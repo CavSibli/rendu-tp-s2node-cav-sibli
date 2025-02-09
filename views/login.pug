@@ -1,0 +1,21 @@
+extends layouts/frontend
+
+block content
+    .ui.middle.aligned.center.aligned.grid
+        .six.wide.column
+            form.ui.large.form(method="post", action="/login")
+                .ui.stacked.segment
+                    +field('email', 'email', 'your.email@address.tld')
+                    +field('password', 'password', 'Password')
+                    button(type="submit").ui.fluid.large.teal.submit.button Connexion
+
+                .ui.error.message
+                if messages && messages.length
+                    each message in messages
+                        .ui.negative.message #{message}
+
+mixin field(type, name, placeholder)
+    .field
+        .ui.left.icon.input
+            i.icon(class=(type === 'password' ? 'lock' : 'user'))
+            input(type=type, name=name, placeholder=placeholder)
