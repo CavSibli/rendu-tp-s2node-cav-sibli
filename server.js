@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
+import connectDB from './config/database.js';
 
 import route from "./routes/routes.js";
 
@@ -14,6 +15,9 @@ const { APP_HOSTNAME, APP_PORT, NODE_ENV } = process.env;
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
+
+// Connexion à MongoDB
+connectDB();
 
 app.set("view engine", "pug");
 app.locals.pretty = (NODE_ENV !== 'production'); // Indente correctement le HTML envoyé au client (utile en dev, mais inutile en production)
