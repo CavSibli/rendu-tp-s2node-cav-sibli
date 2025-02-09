@@ -21,4 +21,17 @@ html(lang="en")
                 i.file.icon
                 | Posts
 
+
+        if messages.error && messages.error.length > 0
+            .ui.negative.message
+                i.close.icon
+                .content
+                    .header= messages.error
+
+        if messages.success && messages.success.length > 0
+            .ui.positive.message
+                i.close.icon
+                .content
+                    .header= messages.success
+
         block content
